@@ -38,29 +38,27 @@
                 <p class="text-muted">Your provided symptoms and suggested medical insights.</p>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-4">
                 <h5>📝 Your Symptoms:</h5>
                 <p class="alert alert-secondary">{{ symptoms }}</p>
             </div>
 
-            <div class="mb-4">
-                <h5>🔮 Predicted Diseases:</h5>
-                <ul class="list-group">
-                    {% for disease in predictions %}
-                        <li class="list-group-item">{{ disease }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <div>
-                <h5>🧪 Recommended Medical Tests:</h5>
-                <ul class="list-group">
-                    {% for disease, tests in test_info.items() %}
-                        <li class="list-group-item">
-                            <strong>{{ disease }}:</strong> {{ tests }}
-                        </li>
-                    {% endfor %}
-                </ul>
+            <!-- Disease Cards -->
+            <div class="row">
+                {% for disease in predictions %}
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-primary shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">{{ disease }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <p><strong>🧪 Test:</strong> {{ test_info[disease] }}</p>
+                            <p><strong>⚠️ Precautions:</strong> {{ precaution_info[disease] }}</p>
+                            <p><strong>🧬 Causes:</strong> {{ cause_info[disease] }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
 
             <div class="text-center mt-4">
@@ -80,3 +78,4 @@
 </body>
 
 </html>
+
